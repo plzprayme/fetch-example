@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1 id="title">{{{title}}}</h1>
+  <input id="input" type="text">
+  <input type="button" value="submit" onclick="submit()">
+
+  <script>
+    // GET 요청
+    // let submit = () => {
+    //  let input = document.getElementById('input');
+    //  let target = document.getElementById('title');
+    //  fetch('/title/' + input.value)
+    //    .then(res => res.json())
+    //    .then(json => target.innerHTML = json.title);
+    // }
+
+    // POST 요청
+    // let submit = () => {
+    //   let input = document.getElementById('input');
+    //   let target = document.getElementById('title');
+    //   fetch('/title', {
+    //     method: 'post',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ 'title': input.value }),
+    //   })
+    //     .then(res => res.json())
+    //     .then(json => target.innerHTML = json.title)
+    //     .catch(error => alert('Error: ', error.text); 
+    // }
+
+    let submit = async () => {
+      let input = document.getElementById('input');
+      let target = document.getElementById('title');
+      let replaceTitle = json => target.innerHTML = json.title;
+      let url = '/title'
+      let options = { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({'title': input.value}),
+      }
+      
+      try {
+        let response = await fetch(url, options);
+        let json = await response.json();
+        let task = await replaceTitle(json);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  </script>
+
+</body>
+
+</html>
