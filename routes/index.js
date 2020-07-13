@@ -10,8 +10,13 @@ router.get('/title/:title', (req, res, next) => {
   res.json({ title: req.params.title });
 })
 
-router.post('/title', (req, res, next) => {
+router.post('/title', (req, res, next) => {  
   res.json({ 'title': req.body.title });
-  // res.send('HELLO WORLD'); // Error 발생
+  
+})
+
+router.get('/ajax', (req, res, next) => {
+  for(;;) console.log(); // async=false => front page block
+  res.json({bool: task().then(res => res)});
 })
 module.exports = router;

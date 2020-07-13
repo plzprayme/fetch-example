@@ -11,6 +11,26 @@
   <input id="input" type="text">
   <input type="button" value="submit" onclick="submit()">
 
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    let settings = {
+      method: 'GET',
+      url: 'http://localhost:3000/ajax',
+      {{!-- async: false, --}}
+      beforeSend: () => {
+        console.log("BEFORE!!")
+      },
+      success: (data) => {
+        console.log("SUCCESS DATA: ", data);
+      },
+      complete: () => {
+        console.log("COMPLETE!!");
+      }
+    }
+    $.ajax(settings);
+  </script>
   <script>
     // GET 요청
     // let submit = () => {
